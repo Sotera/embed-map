@@ -11,7 +11,7 @@ angular.module('myApp')
         if(group.getLayers().length === 0) return;
         map.fitBounds(group.getBounds());
       });
-    });
+    },10);
 
     $scope.$watchGroup(['markers', 'geojson'], function() {
       $scope.fitBounds();
