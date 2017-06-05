@@ -22,6 +22,10 @@ angular.module('myApp')
 
       scope.$apply();
 
+      scope.getMap().then((map) => {
+        scope.fitBounds();
+      });
+
     }
   }
 

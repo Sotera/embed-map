@@ -2,6 +2,9 @@ angular.module('myApp')
 .controller('MapCtrl', [ '$scope', '$http', "leafletMapEvents", "leafletData",
   function($scope, $http, leafletMapEvents, leafletData) {
 
+    $scope.getMap = function(){
+      return leafletData.getMap();
+    };
     $scope.fitBounds = _.debounce(function(){
       leafletData.getMap().then((map) => {
         const group = new L.FeatureGroup;
@@ -12,10 +15,6 @@ angular.module('myApp')
         map.fitBounds(group.getBounds());
       });
     },100);
-
-    $scope.$watchGroup(['markers', 'geojson'], function() {
-      $scope.fitBounds();
-    });
 
     angular.extend($scope, {
     // center: {
