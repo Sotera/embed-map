@@ -10,22 +10,10 @@ angular.module('myApp')
     function receiveMessage(event) {
       console.info(event.data);
       const options = event.data;
-
-      // var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
-      // if (origin !== "http://example.org:8080")
-      //   return;
-
-      const geojson = options.geojson;
-      geojson.onEachFeature = onEachFeature; // send marker click to parent
-
+      options.geojson.onEachFeature = onEachFeature; // send marker click to parent
       angular.extend(scope, options);
-
       scope.$apply();
-
-      scope.getMap().then((map) => {
-        scope.fitBounds();
-      });
-
+      scope.dirty=true;
     }
   }
 
